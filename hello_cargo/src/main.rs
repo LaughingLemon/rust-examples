@@ -1,16 +1,25 @@
 use std::fs::File;
-use std::io::{Error, ErrorKind};
+use std::io::{Error, ErrorKind, Read};
+use std::io;
 
 fn main() {
-    let f = File::open("hello.txt");
-    let f = match f {
-        Ok(file) => file,
-        Err(error) => match error.kind() {
-            ErrorKind::NotFound => match File::create("hello.txt") {
-                Ok(fc) => fc,
-                Err(er) => panic!("Problem creating the file: {:?}", er)
-            },
-            other_error => panic!("Problem opeining the file: {:?}", other_error)
-        }
+    match read_user_name() {
+        Ok(user_name) => println!("{}", user_name),
+        Err(err) => panic!("Unable to read username, {}", err)
     };
+}
+
+fn read_user_name() -> Result<String, io::Error> {
+    let f = File::open("hello.txt");
+    let mut f = match f {
+        Ok(file) => file,
+        Err(error) => return Err(error)
+    };
+
+    let mut s = String::new();
+
+    match f.read_to_string(&mut s) {
+        Ok(_) => Ok(s),
+        Err(e) => Err(e)
+    }
 }
