@@ -1,16 +1,25 @@
-use std::fs::File;
-use std::io::{Error, ErrorKind, Read};
-use std::io;
 
 fn main() {
-    match read_user_name() {
-        Ok(user_name) => println!("{}", user_name),
-        Err(err) => panic!("Unable to read username, {}", err)
-    };
+    let v = vec!(1, 3, 7, 3, 12, 54, 34, 67, 2);
+
+    let largest = find_largest(&v);
+
+    println!("largest is {}", largest);
+
+    let v = vec!(12, 65, 45, 87, 3);
+
+    let largest = find_largest(&v);
+
+    println!("largest is {}", largest);
 }
 
-fn read_user_name() -> Result<String, io::Error> {
-    let mut s = String::new();
-    File::open("hello.txt")?.read_to_string(&mut s)?;
-    Ok(s)
+fn find_largest(v: &[i32]) -> i32 {
+    let mut largest = v[0];
+
+    for &i in v.iter() {
+        if i > largest {
+            largest = i;
+        }
+    }
+    largest
 }
