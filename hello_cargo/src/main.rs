@@ -1,31 +1,19 @@
 
 fn main() {
-    let v = vec!(1, 3, 7, 3, 12, 54, 34, 67, 2);
+    let num_list = vec!(1, 3, 7, 3, 12, 54, 34, 67, 2);
 
-    let largest = largest_integer(&v);
+    let result = largest(&num_list);
 
-    println!("largest is {}", largest);
+    println!("largest is {}", result);
 
-    let v = vec!('e','G', 'b', 'L');
+    let char_list = vec!('e','G', 'b', 'L');
 
-    let largest = largest_character(&v);
+    let result = largest(&char_list);
 
-    println!("largest is {}", largest);
+    println!("largest is {}", result);
 }
 
-fn largest_integer(v: &[i32]) -> i32 {
-    let mut largest = v[0];
-
-    for &i in v.iter() {
-        if i > largest {
-            largest = i;
-        }
-    }
-    largest
-}
-
-
-fn largest_character(v: &[char]) -> char {
+fn largest<T: PartialOrd + Copy>(v: &[T]) -> T {
     let mut largest = v[0];
 
     for &i in v.iter() {
