@@ -13,5 +13,19 @@ fn main() {
 
     h1.insert(k1, v1);
 
-    println!("{}", k1);
+    println!("{:?}", h1);
+
+    h1.insert("key 3".to_string(), 12);
+
+    println!("{:?}", h1);
+
+    h1.entry("key 3".to_string()).or_insert(13);
+    h1.entry("key 4".to_string()).or_insert(10);
+
+    println!("{:?}", h1);
+
+    let v2 = h1.entry("key 4".to_string()).or_insert(10);
+    *v2 += 5;
+
+    println!("{:?}", h1);
 }
