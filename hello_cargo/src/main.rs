@@ -1,18 +1,17 @@
+use std::collections::HashMap;
+
 fn main() {
-    let s1 = String::from("hello ");
+    let mut h = HashMap::new();
 
-    let s2= String::from("world");
-    let s3 = s1 + &s2;
+    h.insert(String::from("key 1"), 1);
+    h.insert(String::from("key 2"), 2);
 
-    println!("This is {}, {}", s2, s3);
+    let k1 = String::from("key 3");
+    let v1 = 3;
 
-    let s4 = format!("{}, {}", s2, s3);
-    println!("{}", s4);
+    let mut h1 = HashMap::new();
 
-    for c in "नमस्ते".chars() {
-        println!("{}", c);
-    }
-    for b in "नमस्ते".bytes() {
-        println!("{}", b);
-    }
+    h1.insert(k1, v1);
+
+    println!("{}", k1);
 }
