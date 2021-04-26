@@ -13,10 +13,10 @@ fn main() {
     println!("largest is {}", result);
 }
 
-fn largest<T: PartialOrd + Copy>(v: &[T]) -> T {
-    let mut largest = v[0];
+fn largest<T: PartialOrd>(v: &[T]) -> &T {
+    let mut largest = &v[0];
 
-    for &i in v.iter() {
+    for i in v.iter() {
         if i > largest {
             largest = i;
         }
