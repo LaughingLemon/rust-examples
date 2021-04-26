@@ -1,13 +1,8 @@
 fn main() {
-    let mut v = vec![1, 2, 3, 4, 5];
+    let mut s1 = String::from("hello ");
 
-    for i in &v {
-        println!("This is {}", i);
-    }
+    let s2= "world";
+    s1.push_str(s2);
 
-    let four = &v[3];
-
-    v.push(7);
-
-    println!("This is {}", four);
+    println!("This is {}, {}", s2, s1);
 }
