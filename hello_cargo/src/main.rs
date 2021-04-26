@@ -8,4 +8,11 @@ fn main() {
 
     let s4 = format!("{}, {}", s2, s3);
     println!("{}", s4);
+
+    for c in "नमस्ते".chars() {
+        println!("{}", c);
+    }
+    for b in "नमस्ते".bytes() {
+        println!("{}", b);
+    }
 }
