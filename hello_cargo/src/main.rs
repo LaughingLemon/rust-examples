@@ -1,25 +1,18 @@
 
 fn main() {
-    let num_list = vec!(1, 3, 7, 3, 12, 54, 34, 67, 2);
-
-    let result = largest(&num_list);
-
-    println!("largest is {}", result);
-
-    let char_list = vec!('e','G', 'b', 'L');
-
-    let result = largest(&char_list);
-
-    println!("largest is {}", result);
+    let string1 = String::from("long string is long");
+    let result;
+    {
+        let string2 = String::from("xyz");
+        result = longest(string1.as_str(), string2.as_str());
+    }
+    println!("The longest string is {}", result);
 }
 
-fn largest<T: PartialOrd>(v: &[T]) -> &T {
-    let mut largest = &v[0];
-
-    for i in v.iter() {
-        if i > largest {
-            largest = i;
-        }
+fn longest<'a>(first: &'a str, next: &'a str) -> &'a str {
+    if first.len() > next.len() {
+        first
+    } else {
+        next
     }
-    largest
 }
