@@ -16,11 +16,18 @@ impl <T> Deref for MyBox<T> {
     }
 }
 
+fn hello(name : &str) {
+    println!("hello {}", name);
+}
+
 fn main() {
     let x = 5;
     let y = MyBox::new(x);
 
     println!("x is {}", x);
     println!("y is {}", *y);
+
+    let my_name = MyBox::new(String::from("Shaun"));
+    hello(&my_name);
 }
 
