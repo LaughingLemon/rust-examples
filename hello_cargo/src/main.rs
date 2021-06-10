@@ -1,27 +1,11 @@
-use hello_cargo::{Draw, Screen};
-
-pub struct Button {
-    pub width: i32,
-    pub height: i32,
-    pub label_text: String,
-}
-
-impl Draw for Button {
-    fn draw(&self) {
-        println!("draw Button, w: {}, h: {}, labelText: {}",
-                 self.width, self.height, self.label_text);
-    }
-}
+use hello_cargo::Post;
 
 fn main() {
-    let screen = Screen {
-        components: vec![Box::new(Button{
-            width: 10,
-            height: 50,
-            label_text: "Something".to_string()
-        })]
-    };
+    let mut post = Post::new();
 
-    screen.run();
+    post.add_text("Something to write about");
+    let post = post.request_review();
+    let post = post.approve();
+    assert_eq!("Something to write about", post.content());
 }
 
